@@ -88,3 +88,8 @@ export default function CourseList() {
 ))}
 ```
 - **동작 원리**: 조건부 렌더링(`&&`)으로 과목이 없을 때 안내 문구를 띄우고, 과목이 있으면 `map()`으로 배열의 각 요소를 `CourseItem` 컴포넌트로 변환해 화면에 출력하며 필요한 데이터와 콜백 함수를 Props로 전달합니다.
+
+## STEP 3. 커스터마이징 변경 내역
+- `src/data/courses.js`: 초기 과목을 6개(전공 5, 교양 1)로 변경
+- `src/App.jsx`, `index.html`: 제목, 부제목, 태그, 브라우저 탭 제목을 본인 학번/학교/학기 정보로 변경
+- `src/App.css`: 배경색, 상단 태그 배지, Primary 버튼 색상, 과목 행 호버 효과 등 CSS 스타일 4곳 변경
