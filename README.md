@@ -93,3 +93,11 @@ export default function CourseList() {
 - `src/data/courses.js`: 초기 과목을 6개(전공 5, 교양 1)로 변경
 - `src/App.jsx`, `index.html`: 제목, 부제목, 태그, 브라우저 탭 제목을 본인 학번/학교/학기 정보로 변경
 - `src/App.css`: 배경색, 상단 태그 배지, Primary 버튼 색상, 과목 행 호버 효과 등 CSS 스타일 4곳 변경
+
+
+
+## STEP 4. 구현한 기능
+- **필수 기능 ① 과목 등록 (Create)**: `handleAdd`에서 `trim()`으로 빈 문자열 및 공백 입력을 방지하고, `Date.now()`로 고유 `id`를 생성해 `setCourses`로 새 과목을 추가합니다.
+- **필수 기능 ② 완료 상태 변경 (Update)**: `handleToggle`에서 `map()`과 Spread(`...`) 문법으로 해당 과목의 `completed` 상태를 반전시켜 취소선 및 통계 카운터가 즉시 갱신되도록 구현했습니다.
+- **선택 기능 (검색 및 필터링)**: `searchTerm`과 `filter` 상태를 추가하여 과목명 대소문자 구분 없는 실시간 검색과 전체/진행 중/완료 상태별 필터링을 구현했습니다.
+
