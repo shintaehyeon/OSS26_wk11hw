@@ -101,3 +101,11 @@ export default function CourseList() {
 - **필수 기능 ② 완료 상태 변경 (Update)**: `handleToggle`에서 `map()`과 Spread(`...`) 문법으로 해당 과목의 `completed` 상태를 반전시켜 취소선 및 통계 카운터가 즉시 갱신되도록 구현했습니다.
 - **선택 기능 (검색 및 필터링)**: `searchTerm`과 `filter` 상태를 추가하여 과목명 대소문자 구분 없는 실시간 검색과 전체/진행 중/완료 상태별 필터링을 구현했습니다.
 
+
+
+## 배포 및 저장소 링크
+
+- **GitHub Classroom Repository** : https://github.com/2026-2-OSS/assign11-c02-22101046
+- **Vercel 배포 URL** :  https://oss26wk11hw1.vercel.app/
+
+
