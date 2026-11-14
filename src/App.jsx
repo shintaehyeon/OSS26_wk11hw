@@ -1,3 +1,8 @@
+import CourseList from './components/CourseList.jsx';
+
+export default function App() {
+  return (
+    <main className="page">
       <header className="hero">
         <div>
           <p className="topline">HANDONG GLOBAL UNIVERSITY · 2026 FALL</p>
@@ -6,3 +11,11 @@
         </div>
         <span className="tag">22101046 · HGU</span>
       </header>
+      <CourseList />
+      <footer className="bottom">
+        <span>HGU 2026 Fall · 신태현</span>
+        <span>Local state only · Refresh resets data</span>
+      </footer>
+    </main>
+  );
+}
