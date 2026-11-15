@@ -170,6 +170,35 @@ const filteredCourses = courses.filter(course => {
 **③ 리스트 렌더링과 Key**
 map()으로 목록을 출력할 때 왜 key가 필요한지 처음에는 이해하기 어려웠다. React가 항목의 추가·수정·삭제를 구별할 때 각 요소를 안정적으로 식별하기 위한 값이라는 것을 알게 됐다. 배열의 순서가 바뀔 수 있으므로 index보다 key={course.id}처럼 데이터의 고유 ID를 사용하는 것이 좋다는 점도 배웠다.
 
+## AI 사용
+
+#### 1. 본인이 직접 수행한 작업
+- **개발 환경 세팅 및 실행**: 샘플 프로젝트 클론, `npm install`, `npm run dev` 실행 및 `npm run build` 프로덕션 빌드 검증
+- **커스터마이징 기획 및 구현**:
+  - 한동대학교 2026 가을학기 컨셉과 본인 학번/이름 반영 (`src/App.jsx`, `index.html`)
+  - 실제 수강/관심 과목 6개(전공 5, 교양 1) 선정 및 데이터 구성 (`src/data/courses.js`)
+  - 배경색, 태그 배지, Primary 버튼, 행 호버(`:hover`) 등 CSS 4곳 직접 수정 (`src/App.css`)
+- **핵심 React 기능 직접 코딩 및 테스트**:
+  - `handleAdd`(빈 값 방지 + 과목 등록), `handleToggle`(완료 상태 반전), `filteredCourses`(검색 + 상태별 필터링) 구현 및 스타터 안내 배너 제거 (`src/components/CourseList.jsx`)
+  - 브라우저에서 등록·빈 입력 방지·완료 토글·검색·필터·삭제 기능 직접 테스트
+- **문서화, Git 버전 관리 및 배포 전 과정**:
+  - `README.md` 분석 내용, 변경 내역, 주요 코드, 실행 화면 캡처 및 Weekly Review 직접 작성
+  - 기능/수정 단위별 커밋 직접 실행 및 GitHub Classroom(`origin`)·개인 레포(`personal`) 양쪽 Push
+  - Vercel 연동·배포, Auto Deploy 확인 및 배포 URL 동작 검증
+
+#### 2. AI를 활용한 작업 (단계별 멘토 & 코드 리뷰)
+- **개념 학습 및 문법 질의응답**: React `useState` 불변성(`map`, `filter`, Spread `...`), Props/Callback, CSS `:hover`, Markdown 문법(백틱 코드 블록, 이미지 삽입) 등의 원리를 질문하며 학습
+- **디버깅 및 코드 리뷰(QA)**:
+  - 흰 화면 오류(`App.jsx` 레이아웃 누락), `handleAdd` 문법 오타(`trimmed`, 쉼표, `=>`), `handleToggle` 함수 중첩 실수를 진단받고 직접 수정
+- **작성 참고**: 과목명 영문 표기 및 `README.md` 마크다운 문법 참고
+
+
+### AI 활용 소감
+> AI의 발전 속도가 정말 빨라서 개발자가 일하기 훨씬 편한 환경이 되었다는 걸 체감했고, 동시에 그 속도가 한편으로 무섭게 느껴지기도 했습니다.  
+> 하지만 이번 과제처럼 코드를 직접 작성하고 기초를 탄탄히 다지면서 정진한다면, AI는 개발자의 역량을 극대화해 주는 강력한 무기가 되어 실력이 일취월장할 수 있을 것이라는 확신이 들었습니다.  
+> 무엇보다 옆에 개인 튜터가 있는 것처럼 든든하게 질문하고 디버깅할 수 있어서, 과제 구현뿐만 아니라 React와 Git 개념 복습까지 정말 알차게 마칠 수 있었습니다.
+
+
 ## 배포 및 저장소 링크
 
 - **GitHub Classroom Repository** : https://github.com/2026-2-OSS/assign11-c02-22101046
