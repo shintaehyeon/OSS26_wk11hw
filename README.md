@@ -80,14 +80,23 @@ export default function CourseList() {
 ```
 - **동작 원리**: `initialCourses`를 초기값으로 `courses` 상태를 생성합니다. `handleDelete(id)`가 호출되면 `window.confirm`으로 사용자 확인을 받은 뒤, `previous.filter(...)`로 해당 `id`를 제외한 새 배열을 반환하여 상태를 업데이트합니다.
 
-#### 코드 ②: `src/components/CourseList.jsx` (목록 렌더링 및 Props 전달)
+#### 코드 ②: src/components/CourseList.jsx (목록 렌더링 및 Props 전달)
 ```jsx
-{courses.length === 0 && <div className="empty">등록된 과목이 없습니다.</div>}
-{courses.map(course => (
-  <CourseItem key={course.id} course={course} onDelete={handleDelete} onToggle={handleToggle} />
-))}
+        <div className="list-head"><span>COURSE</span><span>CATEGORY</span><span>ACTIONS</span></div>
+        {filteredCourses.length === 0 && <div className="empty">조건에 맞는 과목이 없습니다.</div>}
+        {filteredCourses.map(course => (
+          <CourseItem key={course.id} course={course} onDelete={handleDelete} onToggle={handleToggle} />
+        ))}
+      </section>
 ```
-- **동작 원리**: 조건부 렌더링(`&&`)으로 과목이 없을 때 안내 문구를 띄우고, 과목이 있으면 `map()`으로 배열의 각 요소를 `CourseItem` 컴포넌트로 변환해 화면에 출력하며 필요한 데이터와 콜백 함수를 Props로 전달합니다.
+동작 원리: 조건부 렌더링(&&)으로 검색/필터 조건에 맞는 과목이 없을 때 안내 문구를 띄우고, 과목이 있으면 filteredCourses.map()으로 배열의 각 요소를 CourseItem 컴포넌트로 변환해 화면에 출력하며 course, onDelete, onToggle Props와 고유 key를 전달합니다.
+
+
+
+
+
+
+
 
 ## STEP 3. 커스터마이징 변경 내역
 - `src/data/courses.js`: 초기 과목을 6개(전공 5, 교양 1)로 변경
@@ -102,10 +111,29 @@ export default function CourseList() {
 - **선택 기능 (검색 및 필터링)**: `searchTerm`과 `filter` 상태를 추가하여 과목명 대소문자 구분 없는 실시간 검색과 전체/진행 중/완료 상태별 필터링을 구현했습니다.
 
 
+## STEP 5. Weekly Review:
+- **배운내용 3 가지 , 어려웠던점과 해결법**
+
+**①React의 Props와 State:** Props는 부모가 자식에게 전달하는 읽기 전용 값이고, State는 컴포넌트가 관리하는 변경 가능한 값이야. useState로 상태를 바꾸면 화면이 다시 렌더링됨. 
+**②이벤트와 배열 처리:**  버튼 클릭 같은 이벤트로 함수를 실행하고, map·`filter`·`...`을 사용해 기존 배열을 직접 바꾸지 않고 새 배열을 만들어 목록을 추가·수정·삭제
+**③리스트 렌더링과 Key:** map()으로 컴포넌트 목록을 렌더링할 때, React가 항목의 추가·수정·삭제를 정확히 구별할 수 있도록 각 요소에 고유한 key 값을 지정해. 이때 배열의 index 대신 데이터의 고유 ID(key={course.id})를 사용
+
+
+**① Props와 State의 차이**
+처음에는 두 개념 모두 데이터를 다루기 때문에 차이를 구분하기 어려웠다. Props는 부모가 자식에게 전달하는 읽기 전용 값이고, State는 컴포넌트가 직접 관리하고 변경하는 값으로 정리했다. useState로 State를 변경하면 화면이 다시 렌더링된다는 점도 예제를 통해 이해했다.
+
+**② 이벤트와 배열 처리**
+버튼을 클릭했을 때 함수가 실행되고 목록이 바뀌는 과정이 헷갈렸다. 예제 코드를 따라가며 onClick에 함수를 전달하는 방법을 확인했다. 또 기존 배열을 직접 수정하지 않고 map, filter, 전개 연산자(...)로 새 배열을 만들어 State를 갱신하는 방법을 추가·수정·삭제 기능별로 비교하며 정리했다.
+
+**③ 리스트 렌더링과 Key**
+map()으로 목록을 출력할 때 왜 key가 필요한지 처음에는 이해하기 어려웠다. React가 항목의 추가·수정·삭제를 구별할 때 각 요소를 안정적으로 식별하기 위한 값이라는 것을 알게 됐다. 배열의 순서가 바뀔 수 있으므로 index보다 key={course.id}처럼 데이터의 고유 ID를 사용하는 것이 좋다는 점도 배웠다.
 
 ## 배포 및 저장소 링크
 
 - **GitHub Classroom Repository** : https://github.com/2026-2-OSS/assign11-c02-22101046
 - **Vercel 배포 URL** :  https://oss26wk11hw1.vercel.app/
+-**원본 샘플 URL** : https://github.com/2026-2-OSS/week11_sample_project
+
+  
 
 
