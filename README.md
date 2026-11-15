@@ -1,3 +1,15 @@
+# Taehyeon's Course Manager (2026 Fall · HGU)
+
+> 한동대학교 2026학년도 가을학기 수강 과목 관리를 위한 **React + Vite** 기반 웹 애플리케이션입니다.  
+> 기존 Sample Project를 커스터마이징하고, 과목 등록(Create) · 완료 토글(Update) · 검색 및 상태별 필터링 기능을 구현하여 Vercel에 배포했습니다. 맨밑에 최신 README 가 있습니다.
+
+- **작성자**: 신태현 (22101046)
+- **GitHub Classroom**: https://github.com/2026-2-OSS/assign11-c02-22101046
+- **Vercel 배포 URL**: https://oss26wk11hw1.vercel.app/
+- **원본 Sample Project**: https://github.com/2026-2-OSS/week11_sample_project
+
+---
+
 # OSS Week 11 — React Course Manager (Student Starter)
 
 React + Vite 기반 학생 배포용 Sample Project입니다. **조회와 삭제는 완성**, 등록 및 완료 변경은 학생이 직접 구현하도록 `TODO`로 남겨두었습니다.
@@ -46,7 +58,7 @@ npm run dev
 
 ========================================================
 
-22101046 신태현
+22101046 신태현 11wk 
 
 ## STEP 2. 소스코드 분석
 
@@ -89,7 +101,7 @@ export default function CourseList() {
         ))}
       </section>
 ```
-동작 원리: 조건부 렌더링(&&)으로 검색/필터 조건에 맞는 과목이 없을 때 안내 문구를 띄우고, 과목이 있으면 filteredCourses.map()으로 배열의 각 요소를 CourseItem 컴포넌트로 변환해 화면에 출력하며 course, onDelete, onToggle Props와 고유 key를 전달합니다.
+- **동작 원리**: 조건부 렌더링(&&)으로 검색/필터 조건에 맞는 과목이 없을 때 안내 문구를 띄우고, 과목이 있으면 filteredCourses.map()으로 배열의 각 요소를 CourseItem 컴포넌트로 변환해 화면에 출력하며 course, onDelete, onToggle Props와 고유 key를 전달합니다.
 
 
 
@@ -110,6 +122,30 @@ export default function CourseList() {
 - **필수 기능 ② 완료 상태 변경 (Update)**: `handleToggle`에서 `map()`과 Spread(`...`) 문법으로 해당 과목의 `completed` 상태를 반전시켜 취소선 및 통계 카운터가 즉시 갱신되도록 구현했습니다.
 - **선택 기능 (검색 및 필터링)**: `searchTerm`과 `filter` 상태를 추가하여 과목명 대소문자 구분 없는 실시간 검색과 전체/진행 중/완료 상태별 필터링을 구현했습니다.
 
+```jsx
+
+// 1. 과목 등록 (빈 값 방지 및 새 배열 생성)
+const trimmed = newName.trim();
+if (!trimmed) { window.alert('과목명을 입력하세요.'); return; }
+setCourses(previous => [...previous, { id: Date.now(), name: trimmed, category: 'Major', completed: false }]);
+// 2. 완료 상태 토글 (map + spread로 불변성 유지)
+setCourses(previous =>
+  previous.map(course => course.id === id ? { ...course, completed: !course.completed } : course)
+);
+// 3. 검색 및 완료 여부 필터링
+const filteredCourses = courses.filter(course => {
+  const matchesSearch = course.name.toLowerCase().includes(searchTerm.trim().toLowerCase());
+  if (filter === 'completed') return matchesSearch && course.completed;
+  if (filter === 'active') return matchesSearch && !course.completed;
+  return matchesSearch;
+});
+
+```
+
+### 동작 결과
+- 과목 등록: 빈 입력 시 경고창으로 등록이 차단되며, 과목명 입력 후 추가 시 목록과 상단 전체 과목/진행 중 통계가 즉시 갱신됩니다.
+- 완료 토글: 체크박스 클릭 시 과목명에 취소선이 적용되고 상단 완료/진행 중 숫자가 실시간으로 바뀝니다.
+- 검색 및 필터링: 검색어 입력 및 드롭다운(전체 보기/진행 중/완료) 선택에 따라 일치하는 과목만 즉시 필터링되어 표시됩니다.
 
 ## STEP 5. Weekly Review:
 - **배운내용 3 가지 , 어려웠던점과 해결법**
