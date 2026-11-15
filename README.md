@@ -159,7 +159,7 @@ const filteredCourses = courses.filter(course => {
 
 - **①React의 Props와 State:** Props는 부모가 자식에게 전달하는 읽기 전용 값이고, State는 컴포넌트가 관리하는 변경 가능한 값이야. useState로 상태를 바꾸면 화면이 다시 렌더링됨. 
 - **②이벤트와 배열 처리:**  버튼 클릭 같은 이벤트로 함수를 실행하고, map·`filter`·`...`을 사용해 기존 배열을 직접 바꾸지 않고 새 배열을 만들어 목록을 추가·수정·삭제
-- **③리스트 렌더링과 Key:** map()으로 컴포넌트 목록을 렌더링할 때, React가 항목의 추가·수정·삭제를 정확히 구별할 수 있도록 각 요소에 고유한 key 값을 지정해. 이때 배열의 index 대신 데이터의 고유 ID(key={course.id})를 사용
+- **③리스트 렌더링과 Key:** map()으로 컴포넌트 목록을 렌더링할 때, React가 항목의 추가·수정·삭제를 정확히 구별할 수 있도록 각 요소에 고유한 key 값을 지정함. 이때 배열의 index 대신 데이터의 고유 ID(key={course.id})를 사용
 
 
 **① Props와 State의 차이**
